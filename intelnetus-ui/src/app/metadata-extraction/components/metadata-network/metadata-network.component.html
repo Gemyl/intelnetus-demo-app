@@ -1,21 +1,146 @@
-<div class="bg-smoke-white border border-light-gray min-vh-100 p-3" style="box-shadow: 0 0 4px, 0 0 4px;">
-  <div class="d-flex flex-row justify-content-start border-bottom border-black border-3 mb-2">
-    <h3>Network Visualization</h3>
+<div class="network-container">
+  <!-- Header Section -->
+  <div class="network-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h3 class="network-title">
+          <i class="fas fa-network-wired me-2"></i>
+          Network Visualization
+        </h3>
+        <p class="network-subtitle">Interactive metadata relationship graph</p>
+      </div>
+      <div class="stats-section">
+        <div class="stat-item">
+          <span class="stat-value">{{nodes.length}}</span>
+          <span class="stat-label">Nodes</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">{{links.length}}</span>
+          <span class="stat-label">Connections</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="bg-white w-100 min-vh-100 d-flex flex-column justify-content-center align-items-center">
+
+  <!-- Main Content -->
+  <div class="network-content">
     @if(nodes.length > 0) {
-    <ngx-graph layout="dagre" [autoCenter]="true" [links]="links" [nodes]="nodes">
-      <ng-template #nodeTemplate let-node>
-        <svg:g class="node">
-          <svg:circle [attr.cx]="50" [attr.cy]="50" [attr.r]="40" [attr.fill]="node.data.color" />
-          <svg:text text-anchor="middle" dominant-baseline="central" style="font-size: 12px; pointer-events: none;" [attr.x]="50" [attr.y]="45">
-            {{node.label}}
-          </svg:text>
-        </svg:g>
-      </ng-template>
-    </ngx-graph>
+      <div class="graph-wrapper">
+        <div class="graph-controls">
+          <button class="control-btn" (click)="zoomIn()" title="Zoom In">
+            <fa-icon [icon]="faSearchPlus" [size]="'sm'"/>
+          </button>
+          <button class="control-btn" (click)="zoomOut()" title="Zoom Out">
+            <fa-icon [icon]="faSearchMinus" [size]="'sm'"/>
+          </button>
+          <button class="control-btn" (click)="resetZoom()" title="Reset View">
+            <fa-icon [icon]="faCompress" [size]="'sm'"/>
+          </button>
+          <button class="control-btn" (click)="centerGraph()" title="Center Graph">
+            <fa-icon [icon]="faCrosshairs" [size]="'sm'"/>
+          </button>
+        </div>
+        
+        <div class="graph-container">
+          <ngx-graph 
+            layout="dagre" 
+            [autoCenter]="true" 
+            [links]="links" 
+            [nodes]="nodes"
+            [zoomLevel]="zoomLevel"
+            [enableZoom]="true"
+            [center$]="center$">
+            
+            <ng-template #nodeTemplate let-node>
+              <svg:g class="node-group" [attr.transform]="'translate(50, 50)'">
+                <!-- Node shadow for depth -->
+                <svg:circle 
+                  class="node-shadow" 
+                  [attr.r]="42" 
+                  fill="rgba(0,0,0,0.1)" 
+                  transform="translate(2, 2)" />
+                
+                <!-- Main node circle with gradient -->
+                <defs>
+                  <radialGradient [id]="'nodeGradient-' + node.id">
+                    <stop offset="0%" [attr.stop-color]="node.data.color" stop-opacity="0.8" />
+                    <stop offset="100%" [attr.stop-color]="node.data.color" stop-opacity="1" />
+                  </radialGradient>
+                </defs>
+                
+                <svg:circle 
+                  class="node-circle" 
+                  [attr.r]="40" 
+                  [attr.fill]="'url(#nodeGradient-' + node.id + ')'"
+                  [attr.stroke]="node.data.color"
+                  stroke-width="2"
+                  style="cursor: pointer; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));" />
+                
+                <!-- Node icon based on type -->
+                <svg:text 
+                  class="node-icon" 
+                  text-anchor="middle" 
+                  dominant-baseline="central" 
+                  style="font-size: 20px; pointer-events: none; fill: white;" 
+                  [attr.x]="0" 
+                  [attr.y]="0">
+                  {{getNodeIcon(node.data.type)}}
+                </svg:text>
+                
+                <!-- Node label -->
+                <svg:text 
+                  class="node-label" 
+                  text-anchor="middle" 
+                  dominant-baseline="hanging" 
+                  style="font-size: 11px; pointer-events: none; font-weight: 500;" 
+                  [attr.x]="0" 
+                  [attr.y]="50">
+                  {{node.label}}
+                </svg:text>
+              </svg:g>
+            </ng-template>
+            
+            <ng-template #linkTemplate let-link>
+              <svg:g class="link-group">
+                <svg:path 
+                  class="link-line" 
+                  [attr.d]="link.line"
+                  stroke="#cbd5e1"
+                  stroke-width="2"
+                  stroke-dasharray="5,5"
+                  fill="none"
+                  style="opacity: 0.6;" />
+              </svg:g>
+            </ng-template>
+          </ngx-graph>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+          <h5 class="legend-title">Legend</h5>
+          <div class="legend-items">
+            <div class="legend-item">
+              <span class="legend-icon">📄</span>
+              <span class="legend-text">Publications</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-icon">👤</span>
+              <span class="legend-text">Authors</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-icon">🏢</span>
+              <span class="legend-text">Organizations</span>
+            </div>
+          </div>
+        </div>
+      </div>
     } @else {
-    <span class="mx-auto my-auto opacity-75">No data</span>
+      <div class="empty-state">
+        <div class="empty-state-content">
+          <i class="fas fa-project-diagram empty-icon"></i>
+          <h4 class="empty-title">No Network Data Available</h4>
+        </div>
+      </div>
     }
   </div>
 </div>
