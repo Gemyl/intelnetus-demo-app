@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
+import { faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-metadata-charts',
@@ -13,6 +14,8 @@ export class MetadataChartsComponent implements OnInit, AfterViewInit {
   public publicationsPerCountryChart: Chart;
   public publicationsCitationsPerFieldChart: Chart;
   public fieldsCitationsPerYearChart: Chart;
+
+  faChart = faChartBar;
 
   constructor(
     private store$: Store<AppState>

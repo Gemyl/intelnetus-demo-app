@@ -1,7 +1,29 @@
-<div class="bg-smoke-white border border-light-gray p-3" style="box-shadow: 0 0 4px, 0 0 4px;">
-    <div class="d-flex flex-row justify-content-start border-bottom border-black border-3 mb-2">
-        <h3>Metadata Management</h3>
+<div class="table-container">
+  <!-- Header Section -->
+  <div class="table-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h3 class="table-title">
+          <fa-icon [icon]="faTable" [size]="'sm'" class="me-2"/>
+          Metadata Management
+        </h3>
+        <p class="table-subtitle">View and manage metadata records</p>
+      </div>
+      <div class="stats-section">
+        <div class="stat-item">
+          <span class="stat-value">{{data.length}}</span>
+          <span class="stat-label">Records</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">{{total}}</span>
+          <span class="stat-label">Total</span>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="table-content">
     <div class="pb-2">
         <button 
             class="btn btn-light border border-light-gray" 

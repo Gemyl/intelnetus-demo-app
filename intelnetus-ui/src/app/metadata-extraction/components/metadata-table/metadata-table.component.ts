@@ -7,14 +7,14 @@ import { Entity } from '../../models/metadata-extraction.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { VariantsModalComponent } from '../variants-modal/variants-modal.component';
 import { ViewDetailsComponent } from '../view-details/view-details.component';
-import { faFileExcel } from '@fortawesome/free-solid-svg-icons';
+import { faFileExcel, faTable } from '@fortawesome/free-solid-svg-icons';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-metadata-table',
     templateUrl: './metadata-table.component.html',
-    styleUrls: [],
+    styleUrl: './metadata-table.component.scss',
     standalone: false
 })
 export class MetadataTableComponent implements OnInit, OnDestroy {
@@ -43,6 +43,7 @@ export class MetadataTableComponent implements OnInit, OnDestroy {
 
   faFileExcel = faFileExcel;
   faCopy = faCopy;
+  faTable = faTable;
   
   constructor(
     public _modalService: NgbModal

@@ -1,7 +1,25 @@
-<div class="bg-smoke-white border border-light-gray p-3" style="box-shadow: 0 0 4px, 0 0 4px;">
-    <div class="d-flex flex-row justify-content-start border-bottom border-black border-3">
-        <h3>Insights</h3>
+<div class="charts-container">
+  <!-- Header Section -->
+  <div class="charts-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h3 class="charts-title">
+          <fa-icon [icon]="faChart" [size]="'sm'" class="me-2"/>
+          Insights
+        </h3>
+        <p class="charts-subtitle">Visual analytics and trends</p>
+      </div>
+      <div class="stats-section">
+        <div class="stat-item">
+          <span class="stat-value">3</span>
+          <span class="stat-label">Charts</span>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="charts-content">
     <div class="w-100 d-flex flex-row justify-content-between mt-2">
         <div class="bg-white p-2 border border-light-gray rounded-3 d-flex justify-content-center" style="width: 48%; height: 300px;">
             <canvas id="publications-per-country-chart">

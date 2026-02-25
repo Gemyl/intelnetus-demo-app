@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Link, Node } from '../../models/metadata-network.model';
-import { faSearchPlus, faSearchMinus, faCompress, faCrosshairs } from '@fortawesome/free-solid-svg-icons';
+import { faSearchPlus, faSearchMinus, faCompress, faCrosshairs, faNetworkWired } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -20,6 +20,7 @@ export class MetadataNetworkComponent {
   faSearchMinus = faSearchMinus;
   faCompress = faCompress;
   faCrosshairs = faCrosshairs;
+  faNetworkWired = faNetworkWired;
 
   constructor() {}
 
