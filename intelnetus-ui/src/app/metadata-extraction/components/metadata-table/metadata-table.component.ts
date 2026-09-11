@@ -2,7 +2,7 @@ import { Component, ViewChild, OnInit, Input, Output, EventEmitter, ViewEncapsul
 import { SortEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AuthorVariants, GridFilter, Metadata, OrganizationVariants, PublicationVariants, Variants } from '../../models/metadata-extraction.model';
-import { PaginatorState } from 'primeng/paginator';
+import { Paginator, PaginatorState } from 'primeng/paginator';
 import { Entity } from '../../models/metadata-extraction.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { VariantsModalComponent } from '../variants-modal/variants-modal.component';
@@ -19,6 +19,7 @@ import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs'
 })
 export class MetadataTableComponent implements OnInit, OnDestroy {
   @ViewChild("dt") dataGrid: Table;
+  @ViewChild("paginator") paginator: Paginator;
   @Output() onPageChange: EventEmitter<PaginatorState> = new EventEmitter<PaginatorState>();
   @Output() onFiltersChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() onVariantsSelection: EventEmitter<string> = new EventEmitter<string>();
@@ -31,6 +32,12 @@ export class MetadataTableComponent implements OnInit, OnDestroy {
   @Input() set selectedVariants(data: string) {
     this.variantsToExlude = JSON.parse(data);
   }
+  @Input() set resetToFirstPage(reset: boolean) {
+    if (reset) {
+      this.paginator.changePage(0);
+    }
+  }
+  
   public isSorted: boolean = false;
   public initialValue: any[];
   public pageSize: number = 10;

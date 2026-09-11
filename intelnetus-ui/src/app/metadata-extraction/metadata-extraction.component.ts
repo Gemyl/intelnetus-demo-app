@@ -45,6 +45,7 @@ export class MetadataExtractionComponent implements OnInit {
     organizationCity: "City",
     organizationCountry: "Country"
   }
+  public resetToFirstPage: boolean = false;
 
   constructor(
     private store$: Store<AppState>,
@@ -98,6 +99,7 @@ export class MetadataExtractionComponent implements OnInit {
                 fields: this.searchCriteria.fields
               }))
 
+              this.resetToFirstPage = false;
               // trigger network data fetching
               this.fetchAllData(Operation.NETWORK);
             }
@@ -115,6 +117,7 @@ export class MetadataExtractionComponent implements OnInit {
           case Operation.NETWORK:
             this.operation = Operation.DATA;
             this.networkData = buildNetwork(response.data);
+            this.loading = false;
 
             break;
 
@@ -122,20 +125,23 @@ export class MetadataExtractionComponent implements OnInit {
             console.log("No valid operation");
         }
 
-        this.loading = false;
       });
   }
 
   handlePageChange(event: PaginatorState) {
     this.loading = true;
     this.searchCriteria.pageSize = event.rows;
-    this.searchCriteria.offset = event.first;
+    this.searchCriteria.offset = event.page * event.rows;
     this.store$.dispatch(LoadMetadata(this.searchCriteria));
   }
 
   handleFilterChange(event: string) {
     this.loading = true;
     this.searchCriteria.filterValue = event;
+    // skip no results when any fitler changes
+    this.searchCriteria.offset = 0;
+    // update the view of the paginator so the first page is selected
+    this.resetToFirstPage = true;
     this.store$.dispatch(LoadMetadata(this.searchCriteria));
   }
 
