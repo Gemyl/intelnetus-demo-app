@@ -9,7 +9,7 @@ import { HomeModule } from './home/home.module';
 import { MetadataExtractionModule } from './metadata-extraction/metadata-extraction.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { ToastsModule } from 'src/shared/Toast/toasts.module';
+import { ToastsModule } from '../shared/Toast/toasts.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from "@primeng/themes/aura";
