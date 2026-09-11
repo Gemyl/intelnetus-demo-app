@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.state';
+import { AppState } from '../../../app.state';
 import { faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

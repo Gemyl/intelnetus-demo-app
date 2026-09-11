@@ -10,7 +10,6 @@ import { MetadataExtractionModule } from './metadata-extraction/metadata-extract
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { ToastsModule } from '../shared/Toast/toasts.module';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from "@primeng/themes/aura";
 
@@ -20,7 +19,6 @@ import Aura from "@primeng/themes/aura";
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
     HomeModule,
@@ -30,7 +28,6 @@ import Aura from "@primeng/themes/aura";
     ToastsModule
 ],
   providers: [
-    provideAnimationsAsync(),
     providePrimeNG({
       theme: {
         preset: Aura
