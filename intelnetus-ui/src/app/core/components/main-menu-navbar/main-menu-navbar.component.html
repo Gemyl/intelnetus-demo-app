@@ -9,8 +9,8 @@
     </div>
     <div #mainNavbar class="main-menu-titles navbar-container" (mouseenter)="toggleMainMenuNavbar()"
         (mouseleave)="closeMainMenuNavbar()" [@draw]="showMenuItemsTitles ? 'drawOut' : 'drawIn'">
-        <a href="" class="menu-text" [ngStyle]="{'opacity': showMenuItemsTitles ? '1' : '0'}">Home</a>
-        <a href="/metadata-extraction" class="menu-text" [ngStyle]="{'opacity': showMenuItemsTitles ? '1' : '0'}">Search</a>
+        <a (click)="navigate(routes.HOME)" class="menu-text" [ngStyle]="{'opacity': showMenuItemsTitles ? '1' : '0'}">Home</a>
+        <a (click)="navigate(routes.METADATA)" class="menu-text" [ngStyle]="{'opacity': showMenuItemsTitles ? '1' : '0'}">Search</a>
         <a class="menu-text bg-primary-hover" [ngStyle]="{'opacity': showMenuItemsTitles ? '1' : '0'}">Our Presence</a>
         <a class="menu-text" [ngStyle]="{'opacity': showMenuItemsTitles ? '1' : '0'}">Settings</a>
         <a class="menu-text" [ngStyle]="{'opacity': showMenuItemsTitles ? '1' : '0'}">Info</a>

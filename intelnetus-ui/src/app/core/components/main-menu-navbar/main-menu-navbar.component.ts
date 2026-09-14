@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { state, transition, style, animate, trigger } from '@angular/animations';
 import { faHome, faSearch, faGlobe, faGear, faInfo } from '@fortawesome/free-solid-svg-icons';
 
+enum Routes {
+  HOME = 0,
+  METADATA = 1
+}
+
 @Component({
     selector: 'app-main-menu-navbar',
     templateUrl: './main-menu-navbar.component.html',
@@ -27,6 +32,7 @@ export class MainMenuNavbarComponent implements OnInit {
   public mainMenuIconsHovered = false;
   public mainMenuTitlesHovered = false;
   public showMenuItemsTitles = false;
+  public routes = Routes;
 
   faHome = faHome;
   faSearch = faSearch;
