@@ -1,8 +1,8 @@
 import { Metadata, NetworkData } from "../models/metadata-extraction.model";
-import { Link, Node } from "../models/metadata-network.model"
+import { Edge, Node } from "../models/metadata-network.model"
 
-export function buildNetwork(data: Array<Metadata>): {nodes: Array<Node>, links: Array<Link>} {
-    let networkData: NetworkData = {nodes: [], links: []};
+export function buildNetwork(data: Array<Metadata>): {nodes: Array<Node>, edges: Array<Edge>} {
+    let networkData: NetworkData = {nodes: [], edges: []};
 
     for(let primaryIndex = 0; primaryIndex < data.length; primaryIndex++) {
         // add each author to network's nodes if hasn't been added already
@@ -13,7 +13,7 @@ export function buildNetwork(data: Array<Metadata>): {nodes: Array<Node>, links:
         // add each publication as network's link
         for(let secondaryIndex = primaryIndex + 1; secondaryIndex < data.length; secondaryIndex++) {
             if(data[primaryIndex].publicationId == data[secondaryIndex].publicationId && data[primaryIndex].authorId != data[secondaryIndex].authorId) {
-                networkData.links.push({id: data[primaryIndex].publicationId, source: data[primaryIndex].authorId, target: data[secondaryIndex].authorId});
+                networkData.edges.push({id: data[primaryIndex].publicationId, source: data[primaryIndex].authorId, target: data[secondaryIndex].authorId});
             }
         }
     }

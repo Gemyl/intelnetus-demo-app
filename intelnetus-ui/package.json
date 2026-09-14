@@ -36,8 +36,12 @@
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.7",
     "font-awesome": "^4.7.0",
+    "graphology": "^0.26.0",
+    "graphology-layout": "^0.6.1",
+    "graphology-layout-forceatlas2": "^0.10.1",
     "primeng": "^19.1.4",
     "rxjs": "~7.8.0",
+    "sigma": "^3.0.3",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
     "zone.js": "~0.15.1"
@@ -45,6 +49,7 @@
   "devDependencies": {
     "@angular/build": "^21.1.0",
     "@angular/compiler-cli": "^21.1.0",
+    "@types/events": "^3.0.3",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",

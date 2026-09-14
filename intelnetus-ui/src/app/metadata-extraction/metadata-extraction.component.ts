@@ -9,7 +9,7 @@ import { GetMetadataRequest, Metadata, Operation, Variants } from './models/meta
 import { PaginatorState } from 'primeng/paginator';
 import { DatePipe } from '@angular/common';
 import * as XLSX from 'xlsx';
-import { Link, Node } from './models/metadata-network.model';
+import { Edge, Node } from './models/metadata-network.model';
 import { buildNetwork } from './utils/metadata-network.utils';
 
 @Component({
@@ -27,7 +27,7 @@ export class MetadataExtractionComponent implements OnInit {
   public noVariants: boolean = false;
   public forExport: boolean = false;
   public operation: number = Operation.DATA;
-  public networkData: { nodes: Array<Node>, links: Array<Link> } = { nodes: [], links: [] }
+  public networkData: { nodes: Array<Node>, edges: Array<Edge> } = { nodes: [], edges: [] }
   public headers = {
     publicationDoi: "DOI",
     publicationTitle: "Title",

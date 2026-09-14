@@ -1,4 +1,4 @@
-import { Link, Node } from "./metadata-network.model";
+import { Edge, Node } from "./metadata-network.model";
 
 export enum Entity {
     PUBLICATION = "publications",
@@ -136,7 +136,7 @@ export class GetMetadataRequest {
 
 export interface NetworkData {
     nodes: Array<Node>,
-    links: Array<Link>
+    edges: Array<Edge>
 }
 
 export enum Operation {
