@@ -1,13 +1,13 @@
-<div class="section-container">
+<div class="network-container">
   <!-- Header Section -->
-  <div class="section-header">
+  <div class="network-header">
     <div class="header-content">
       <div class="title-section">
-        <h3 class="section-title">
+        <h3 class="network-title">
           <fa-icon [icon]="faNetworkWired" [size]="'sm'" class="me-2" />
           Network Visualization
         </h3>
-        <p class="section-subtitle">Inspect the structure of the formed graph</p>
+        <p class="network-subtitle">Inspect the structure of the formed graph</p>
       </div>
       <div class="stats-section">
         <div class="stat-item">
@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  <div class="section-content">
+  <div class="network-content">
     <div #sigmaContainer class="sigma-container">
       @if(nodes.length == 0) {
       <span style="margin: auto;">No data</span>

@@ -18,7 +18,7 @@ import { faNetworkWired } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-metadata-network',
   standalone: false,
   templateUrl: './metadata-network.component.html',
-  styleUrls: ['./../../metadata-extraction.component.scss', './metadata-network.component.scss']
+  styleUrl: './metadata-network.component.scss'
 })
 export class MetadataNetworkComponent implements OnChanges, OnDestroy {
   /** Pass your Gephi-exported nodes/edges here, or leave empty for a demo random graph */
